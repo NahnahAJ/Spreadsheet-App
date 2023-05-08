@@ -1,3 +1,3 @@
 # Spreadsheet-App
 
-SpreadsheetApp: A React Native mobile application that offers an intuitive spreadsheet experience with advanced search capabilities. Easily create, edit, and manage spreadsheets on-the-go, and perform complex searches with customizable parameters to quickly find the data you need.
+SpreadsheetApp: A React Native mobile application tailored for real estate companies. Manage property listings in a spreadsheet format with advanced search capabilities, and add new properties easily via a user-friendly form. Stay organized and quickly find the property information you need on-the-go.
