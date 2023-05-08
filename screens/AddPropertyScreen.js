@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
 
-const AddPropertyScreen = () => {
+function AddPropertyScreen() {
   const [propertyType, setPropertyType] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -49,7 +49,7 @@ const AddPropertyScreen = () => {
       <Button title="Submit" onPress={handleSubmit} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import {
+  Text, View, FlatList, StyleSheet
+} from 'react-native';
 import { SearchBar, ListItem } from 'react-native-elements';
 import Fuse from 'fuse.js';
 
-const SearchScreen = () => {
+function SearchScreen() {
   // Dummy data for demonstration purposes
   const data = [
-    { id: '1', type: 'House', location: 'New York', price: 500000 },
-    { id: '2', type: 'Apartment', location: 'Los Angeles', price: 300000 },
+    {
+      id: '1', type: 'House', location: 'New York', price: 500000
+    },
+    {
+      id: '2', type: 'Apartment', location: 'Los Angeles', price: 300000
+    },
     // Add more properties here or fetch them from the app state
   ];
 
@@ -33,7 +39,10 @@ const SearchScreen = () => {
       <ListItem.Content>
         <ListItem.Title>{item.type}</ListItem.Title>
         <ListItem.Subtitle>{item.location}</ListItem.Subtitle>
-        <ListItem.Subtitle>${item.price}</ListItem.Subtitle>
+        <ListItem.Subtitle>
+          <Text>$</Text>
+          {item.price}
+        </ListItem.Subtitle>
       </ListItem.Content>
       <ListItem.Chevron />
     </ListItem>
@@ -53,7 +62,7 @@ const SearchScreen = () => {
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

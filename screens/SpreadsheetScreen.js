@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { View, FlatList, TextInput, StyleSheet } from 'react-native';
+import {
+  View, FlatList, TextInput, StyleSheet
+} from 'react-native';
 import { Header, Button } from 'react-native-elements';
 
-const Spreadsheet = ({ numRows, numColumns }) => {
+function Spreadsheet({ numRows, numColumns }) {
   // Dummy data for demonstration purposes
   const generateData = (rows, cols) => {
-    let data = [];
-    for (let i = 0; i < rows; i++) {
-      let rowData = [];
-      for (let j = 0; j < cols; j++) {
+    const data = [];
+    for (let i = 0; i < rows; i += 1) {
+      const rowData = [];
+      for (let j = 0; j < cols; j += 1) {
         rowData.push('');
       }
       data.push(rowData);
@@ -50,38 +52,41 @@ const Spreadsheet = ({ numRows, numColumns }) => {
       keyExtractor={(item, index) => index.toString()}
     />
   );
-};
+}
 
-const SpreadsheetScreen = () => {
+function SpreadsheetScreen() {
+
   return (
     <View style={styles.container}>
       <Header
         centerComponent={{ text: 'Spreadsheet', style: styles.header }}
-        rightComponent={
+        rightComponent={(
           <Button
             title="Save"
             onPress={() => {
               // Implement save functionality here
             }}
           />
-        }
+        )}
       />
       <Spreadsheet numRows={10} numColumns={5} />
     </View>
   );
-};
-
+}
+const WHITE = '#fff';
+const LIGHT_GRAY = '#ccc';
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
   },
   header: {
     fontSize: 20,
-    color: '#fff',
+    color: WHITE,
   },
   cell: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: LIGHT_GRAY,
     minWidth: 100,
     minHeight: 40,
     padding: 5,
