@@ -3,27 +3,28 @@ import { View, StyleSheet } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
 
-function AddPropertyScreen(props) {
+function AddPropertyScreen({ route, navigation }) {
   const [propertyType, setPropertyType] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
 
+  const { addProperty } = route.params;
+
   const handleSubmit = () => {
     // Validate form data
     // Generate a unique id for the new property
     const id = new Date().getTime().toString();
-  
+
     // Call the addProperty function passed from the MainScreen component
-    props.route.params.addProperty({
+    addProperty({
       id,
       title: `${propertyType} - ${location}`,
     });
-  
+
     // Navigate back to Main Screen
-    props.navigation.goBack();
+    navigation.goBack();
   };
-  
 
   return (
     <View style={styles.container}>
@@ -71,16 +72,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 10,
-//   },
-//   picker: {
-//     height: 50,
-//     width: '100%',
-//   },
-// });
 
 export default AddPropertyScreen;

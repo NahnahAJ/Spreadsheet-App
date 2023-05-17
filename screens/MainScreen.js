@@ -48,11 +48,11 @@ function MainScreen() {
           title="Search"
           onPress={() => navigation.navigate('Search')}
         />
- <Button
-  icon={<Icon name="add-circle" />}
-  title="Add Property"
-  onPress={() => navigation.navigate('AddProperty', { addProperty: addProperty })}
-/>
+        <Button
+          icon={<Icon name="add-circle" />}
+          title="Add Property"
+          onPress={() => navigation.navigate('AddProperty', { addProperty })}
+        />
       </View>
     </View>
   );
