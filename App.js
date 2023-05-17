@@ -1,21 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainScreen from './screens/MainScreen';
+import SpreadsheetScreen from './screens/SpreadsheetScreen';
+import SearchScreen from './screens/SearchScreen';
+import AddPropertyScreen from './screens/AddPropertyScreen';
 
-const backgroundColor = '#fff';
+const Stack = createStackNavigator();
 
-export default function App() {
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello, world!</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainScreen} options={{ title: 'Spreadsheets' }} />
+        <Stack.Screen name="Spreadsheet" component={SpreadsheetScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="AddProperty" component={AddPropertyScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
