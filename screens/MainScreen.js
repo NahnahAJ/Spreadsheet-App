@@ -12,6 +12,13 @@ function MainScreen() {
     // Add more spreadsheets here or fetch them from an API or local storage.
   ]);
 
+  const addProperty = (newProperty) => {
+    setSpreadsheets((prevSpreadsheets) => [
+      ...prevSpreadsheets,
+      { id: newProperty.id, title: newProperty.title },
+    ]);
+  };
+
   const renderItem = ({ item }) => (
     <ListItem bottomDivider onPress={() => navigation.navigate('Spreadsheet', { spreadsheetId: item.id })}>
       <ListItem.Content>
@@ -41,11 +48,11 @@ function MainScreen() {
           title="Search"
           onPress={() => navigation.navigate('Search')}
         />
-        <Button
-          icon={<Icon name="add-circle" />}
-          title="Add Property"
-          onPress={() => navigation.navigate('AddProperty')}
-        />
+ <Button
+  icon={<Icon name="add-circle" />}
+  title="Add Property"
+  onPress={() => navigation.navigate('AddProperty', { addProperty: addProperty })}
+/>
       </View>
     </View>
   );
