@@ -3,16 +3,27 @@ import { View, StyleSheet } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
 
-function AddPropertyScreen() {
+function AddPropertyScreen(props) {
   const [propertyType, setPropertyType] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
 
   const handleSubmit = () => {
-    // Validate form data and add property to the spreadsheet
-    // Navigate back to Main Screen or Spreadsheet Screen
+    // Validate form data
+    // Generate a unique id for the new property
+    const id = new Date().getTime().toString();
+  
+    // Call the addProperty function passed from the MainScreen component
+    props.route.params.addProperty({
+      id,
+      title: `${propertyType} - ${location}`,
+    });
+  
+    // Navigate back to Main Screen
+    props.navigation.goBack();
   };
+  
 
   return (
     <View style={styles.container}>
