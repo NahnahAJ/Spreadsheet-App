@@ -5,24 +5,45 @@ import { useNavigation } from '@react-navigation/native';
 
 function MainScreen() {
   const navigation = useNavigation();
-  // eslint-disable-next-line no-unused-vars
   const [spreadsheets, setSpreadsheets] = useState([
-    { id: '1', title: 'Spreadsheet 1' },
-    { id: '2', title: 'Spreadsheet 2' },
-    // Add more spreadsheets here or fetch them from an API or local storage.
+    { 
+      id: '1', 
+      title: 'Spreadsheet 1',
+      properties: []
+    },
+    { 
+      id: '2', 
+      title: 'Spreadsheet 2',
+      properties: []
+    },
   ]);
 
-  const addProperty = (newProperty) => {
-    setSpreadsheets((prevSpreadsheets) => [
-      ...prevSpreadsheets,
-      { id: newProperty.id, title: newProperty.title },
-    ]);
+  const addProperty = (spreadsheetId, newProperty) => {
+    setSpreadsheets((prevSpreadsheets) => {
+      return prevSpreadsheets.map((spreadsheet) => {
+        if (spreadsheet.id === spreadsheetId) {
+          return {
+            ...spreadsheet,
+            properties: [...spreadsheet.properties, newProperty],
+          };
+        } else {
+          return spreadsheet;
+        }
+      });
+    });
   };
 
   const renderItem = ({ item }) => (
-    <ListItem bottomDivider onPress={() => navigation.navigate('Spreadsheet', { spreadsheetId: item.id })}>
+    <ListItem bottomDivider>
       <ListItem.Content>
-        <ListItem.Title>{item.title}</ListItem.Title>
+        <ListItem.Title onPress={() => navigation.navigate('Spreadsheet', { spreadsheetId: item.id })}>
+          {item.title}
+        </ListItem.Title>
+        <Button
+          icon={<Icon name="add-circle" />}
+          title="Add Property"
+          onPress={() => navigation.navigate('AddProperty', { addProperty, spreadsheetId: item.id })}
+        />
       </ListItem.Content>
       <ListItem.Chevron />
     </ListItem>
@@ -47,11 +68,6 @@ function MainScreen() {
           icon={<Icon name="search" />}
           title="Search"
           onPress={() => navigation.navigate('Search')}
-        />
-        <Button
-          icon={<Icon name="add-circle" />}
-          title="Add Property"
-          onPress={() => navigation.navigate('AddProperty', { addProperty })}
         />
       </View>
     </View>
