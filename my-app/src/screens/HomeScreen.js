@@ -1,13 +1,23 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, FlatList } from 'react-native';
+const data = [ {id: 1, name: 'Sign In'}, {id: 2, name: 'Pricing Guide'}]
 
 const HomeScreen = ({navigation}) => {
   return (
     <View>
-      <Text style={{ fontSize: 30 }}>Home Screen</Text>
-      <Button title='Home'
-        onPress={()=> navigation.navigate('Home')}
+      <Text>Alveo Hive</Text>
+      <FlatList keyExtractor={(id) => id.id}
+        data={data}
+        renderItem={({ item }) => {
+          return <Button title={item.name} onPress={() => navigation.navigate(item.name)} />
+        }}
       />
+      <Text> Welcome to ALVEO HUB</Text>
+      <Text>Organize, advertize and share your properties</Text>
+      <Button title='Add Property'/>
+      <Button title='My Properties' />
+      <Button title='Requests' />
+      <Button title="Post Request" onPress={() => navigation.navigate('Post')} />
     </View>
   )
 };
