@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
-const data = [ {id: 1, name: 'Sign In'}, {id: 2, name: 'Pricing Guide'}]
+import SignOutButton from '../components/SignOut';
+
+const data = [ {id: 1, name: 'Sign Up'}, {id: 2, name: 'Pricing Guide'}]
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -14,10 +16,12 @@ const HomeScreen = ({navigation}) => {
       />
       <Text> Welcome to ALVEO HUB</Text>
       <Text>Organize, advertize and share your properties</Text>
-      <Button title='Add Property'/>
+      <Button title='Add Property' onPress={() => navigation.navigate('Add Property')}/>
       <Button title='My Properties' />
       <Button title='Requests' />
       <Button title="Post Request" onPress={() => navigation.navigate('Post')} />
+      <Button title='Logins' onPress={() => navigation.navigate('Login')} />
+      <SignOutButton />
     </View>
   )
 };
